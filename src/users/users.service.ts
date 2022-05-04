@@ -3,7 +3,7 @@ import { PrismaService } from 'src/prisma.service';
 import { ICreateUserService, IUser, IUsersService } from './users.structure';
 
 @Injectable()
-export class UserService implements IUsersService {
+export class UsersService implements IUsersService {
   constructor(private prisma: PrismaService) {}
 
   async create(data: ICreateUserService): Promise<IUser> {
