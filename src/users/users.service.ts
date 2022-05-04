@@ -1,10 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { ICreateUserService, IUser, IUsersService } from './users.structure';
-import { UsersRepository } from './users.repository';
+import { Inject, Injectable } from '@nestjs/common';
+import {
+  ICreateUserService,
+  IUser,
+  IUsersRepository,
+  IUsersService,
+} from './users.structure';
 
 @Injectable()
 export class UsersService implements IUsersService {
-  constructor(private repo: UsersRepository) {}
+  constructor(@Inject('USERS_REPOSITORY') private repo: IUsersRepository) {}
 
   async create(data: ICreateUserService): Promise<IUser> {
     return await this.repo.create(data);
