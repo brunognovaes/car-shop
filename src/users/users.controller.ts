@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { CreateUserDto } from './users.dto';
 import { UsersService } from './users.service';
 import { IUser } from './users.structure';
@@ -20,7 +27,7 @@ export class UsersController {
   }
 
   @Get('/:id')
-  async findOne(@Param('id') id: number): Promise<IUser> {
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<IUser> {
     const users = await this.usersService.findOne(id);
     return users;
   }
